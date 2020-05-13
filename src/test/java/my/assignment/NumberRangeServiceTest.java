@@ -1,9 +1,11 @@
 package my.assignment;
 
+import my.assignment.exception.MyException;
 import my.assignment.service.impl.NumberRangeServiceImpl;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NumberRangeServiceTest {
 
@@ -19,6 +21,18 @@ public class NumberRangeServiceTest {
     public void shouldSkipSpaces() {
         NumberRangeServiceImpl numberRangeService = new NumberRangeServiceImpl();
         assertThat(numberRangeService.convert("  1 2 3 5  6 7 9 10 11 12 ")).isEqualTo("1-3 5-7 9-12");
+    }
+
+    @Test
+    public void shouldThrowMyException() {
+        NumberRangeServiceImpl numberRangeService = new NumberRangeServiceImpl();
+        assertThatThrownBy(() -> numberRangeService.convert("123 hjh 234")).isExactlyInstanceOf(MyException.class);
+    }
+
+    @Test
+    public void shouldReturnEmptyLine() {
+        NumberRangeServiceImpl numberRangeService = new NumberRangeServiceImpl();
+        assertThat(numberRangeService.convert("")).isEqualTo("");
     }
 }
 
