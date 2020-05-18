@@ -1,6 +1,5 @@
 package my.assignment.controller;
 
-import lombok.AllArgsConstructor;
 import my.assignment.service.NumberRangeService;
 import my.assignment.util.StreamHelper;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +15,9 @@ import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequestMapping
-@AllArgsConstructor
 public class NumberRangeController {
 
-    private final NumberRangeService numberRangeService;
+    private NumberRangeService numberRangeService;
 
     @GetMapping("convert")
     public StreamingResponseBody convert(HttpServletResponse response, @RequestParam String path) throws UnsupportedEncodingException {
@@ -29,6 +27,6 @@ public class NumberRangeController {
                 "Content-Disposition",
                 "attachment;filename=sample-output.txt");
 
-        return os -> StreamHelper.streamFileIntoOutputStream(decodedPath, os, line -> numberRangeService.convert(line));
+        return os -> StreamHelper.streamFileIntoOutputStream(decodedPath, os, numberRangeService::convert);
     }
 }

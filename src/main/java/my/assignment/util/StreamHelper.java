@@ -11,6 +11,9 @@ import java.util.stream.Stream;
 
 public final class StreamHelper {
 
+    private StreamHelper() {
+    }
+
     /**
      * Streams a file into an OutputStream
      */

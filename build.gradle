@@ -16,7 +16,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'my.assignment'
 version = '1.0'
-sourceCompatibility = '1.8'
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -25,7 +25,6 @@ repositories {
 dependencyManagement {
 
     dependencies {
-        dependency 'org.projectlombok:lombok:1.16.18'
         dependency 'org.assertj:assertj-core:3.6.2'
         dependency 'org.apache.commons:commons-lang3:3.0'
     }
@@ -34,7 +33,6 @@ dependencyManagement {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
-    compileOnly 'org.projectlombok:lombok'
     compile 'org.apache.commons:commons-lang3'
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
