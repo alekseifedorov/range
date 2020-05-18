@@ -2,6 +2,7 @@ package my.assignment.controller;
 
 import my.assignment.service.NumberRangeService;
 import my.assignment.util.StreamHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,11 @@ import java.nio.charset.StandardCharsets;
 public class NumberRangeController {
 
     private NumberRangeService numberRangeService;
+
+    @Autowired
+    public NumberRangeController(NumberRangeService numberRangeService) {
+        this.numberRangeService = numberRangeService;
+    }
 
     @GetMapping("convert")
     public StreamingResponseBody convert(HttpServletResponse response, @RequestParam String path) throws UnsupportedEncodingException {
